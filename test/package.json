@@ -1,0 +1,23 @@
+{
+  "name": "layton-boilerplate",
+  "version": "1.0.0",
+  "description": "Layton Boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Layt@bitbucket.org/Layt/layton.git"
+  },
+  "author": "Enzo Vergara",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/Layt/layton",
+  "devDependencies": {
+    "chalk": "^2.4.2",
+    "del": "^5.1.0",
+    "fancy-log": "^1.3.3",
+    "gulp": "^4.0.2",
+    "gulp-html-partial": "^1.0.1"
+  },
+}
