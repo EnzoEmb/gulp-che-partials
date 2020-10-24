@@ -6,14 +6,15 @@ const del = require('del');
 const log = require('fancy-log');
 const chalk = require('chalk');
 const htmlPartial = require('gulp-html-partial');
+const myPlugin = require('../index.js');
 
 var src;
 
 
-gulp.task('html:partials', function () {
+gulp.task('myPlugin', function () {
 	return gulp.src(['src/*.html'])
-		.pipe(htmlPartial({
-			basePath: 'src/partials/'
+		.pipe(myPlugin({
+			// basePath: 'src/partials/'
 		}))
 		.pipe(gulp.dest('build'));
 });
