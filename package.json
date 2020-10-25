@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/EnzoEmb/gulp-html-elements/issues"
   },
-  "homepage": "https://github.com/EnzoEmb/gulp-html-elements#readme"
+  "homepage": "https://github.com/EnzoEmb/gulp-html-elements#readme",
+  "dependencies": {
+    "through2": "^4.0.2"
+  }
 }

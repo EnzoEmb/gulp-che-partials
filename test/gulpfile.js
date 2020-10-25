@@ -8,7 +8,7 @@ const log = require('fancy-log');
 const chalk = require('chalk');
 const htmlPartial = require('gulp-html-partial');
 const through2 = require('through2');
-// const htmlElements = require('gulp-html-elements');
+const htmlElements = require('../index');
 
 
 
@@ -26,7 +26,10 @@ gulp.task('partials', function () {
 		// .pipe(htmlPartial({
 		// 	basePath: 'src/partials/'
 		// }))
-		.pipe(through2.obj(myPlugin))
+		// .pipe(through2.obj(myPlugin))
+		.pipe(htmlElements({
+			test: 'hola'
+		}))
 		.pipe(gulp.dest('build'));
 });
 
