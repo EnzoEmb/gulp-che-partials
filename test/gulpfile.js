@@ -7,15 +7,26 @@ const del = require('del');
 const log = require('fancy-log');
 const chalk = require('chalk');
 const htmlPartial = require('gulp-html-partial');
+const through2 = require('through2');
 // const htmlElements = require('gulp-html-elements');
 
 
 
+
+function myPlugin(file, enc, callback) {
+  // const prettyString = pretty(file.contents.toString(), { ocd: true });
+  const trimmedString = 'hola que tal';
+  file.contents = Buffer.from(trimmedString);
+  callback(null, file);
+}
+
+
 gulp.task('partials', function () {
 	return gulp.src(['src/*.html'])
-		.pipe(htmlPartial({
-			basePath: 'src/partials/'
-		}))
+		// .pipe(htmlPartial({
+		// 	basePath: 'src/partials/'
+		// }))
+		.pipe(through2.obj(myPlugin))
 		.pipe(gulp.dest('build'));
 });
 

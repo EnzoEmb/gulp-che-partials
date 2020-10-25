@@ -22,5 +22,7 @@
     "gulp-file-include": "^2.2.2",
     "gulp-html-partial": "^1.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "through2": "^4.0.2"
+  }
 }
