@@ -6,19 +6,18 @@ const gulp = require('gulp');
 const del = require('del');
 const log = require('fancy-log');
 const chalk = require('chalk');
-const htmlPartial = require('gulp-html-partial');
-const through2 = require('through2');
+// const through2 = require('through2');
 const htmlElements = require('../index');
 
 
 
 
-function myPlugin(file, enc, callback) {
-  // const prettyString = pretty(file.contents.toString(), { ocd: true });
-  const trimmedString = 'hola que tal';
-  file.contents = Buffer.from(trimmedString);
-  callback(null, file);
-}
+// function myPlugin(file, enc, callback) {
+//   // const prettyString = pretty(file.contents.toString(), { ocd: true });
+//   const trimmedString = 'hola que tal';
+//   file.contents = Buffer.from(trimmedString);
+//   callback(null, file);
+// }
 
 
 gulp.task('partials', function () {
