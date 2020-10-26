@@ -57,7 +57,6 @@ function replacePartials(file) {
 
   var myTags = getPartialTags(html);
 
-
   // get partial content and replacing
   if (myTags.length != 0) {
     myTags.forEach(element => {
@@ -89,14 +88,14 @@ function getPartialTags(html) {
   var myTags = [];
   tags.forEach(function (e) {
     var src_content = e[0].match(src_regex)[1].replace(/['"]+/g, '');
-    var parameters = e[0].match(parameters_regex);
+    var pars = e[0].match(parameters_regex);
 
     // get parameters of the tag
-    var myPars = [];
-    parameters.forEach(function (ee) {
+    var parameters = [];
+    pars.forEach(function (ee) {
       ee = ee.replace(/['"]+/g, ''); // remove quotes
       ee = ee.split('=')
-      myPars[ee[0]] = ee[1]
+      parameters[ee[0]] = ee[1]
     })
 
 
@@ -105,7 +104,7 @@ function getPartialTags(html) {
       tag: e[0],
       content: e[1],
       src: src_content,
-      myPars,
+      parameters,
     })
   })
 
