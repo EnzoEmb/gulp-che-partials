@@ -81,9 +81,12 @@ function replacePartials(file) {
 function getPartialTags(html) {
 
   var partial_regex = "<\s*partial[^>]*>(.*?)<\s*/\s*partial>";
+  var partial_regex_self_closing = "<\s*partial[^>]*/>";
   var src_regex = /src\=([^\s]*)\s/;
   var parameters_regex = /(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|\s*\/?[>"']))+.)["']?/g;
   var tags = [...html.matchAll(partial_regex)];
+  var tags_self_closing = [...html.matchAll(partial_regex_self_closing)];
+  tags = tags.concat(tags_self_closing);
 
   var myTags = [];
   tags.forEach(function (e) {
