@@ -15,7 +15,7 @@ module.exports = function (options) {
     }
 
     if (file.isStream()) {
-      callback(new PluginError('gulp-html-elements', 'Streaming not supported'));
+      callback(new PluginError('gulp-che-partials', 'Streaming not supported'));
       return;
     }
 
@@ -26,7 +26,7 @@ module.exports = function (options) {
 
 
     } catch (error) {
-      this.emit('error', new PluginError('gulp-html-elements', error));
+      this.emit('error', new PluginError('gulp-che-partials', error));
     }
 
     callback(null, file);
