@@ -64,8 +64,8 @@ function replacePartials(file) {
       var src_file = file.base + '/' + element.parameters.src
       if (fs.existsSync(src_file)) {
         var data = fs.readFileSync(src_file).toString();
-        data = replaceParameters(data, element.parameters);
-        // console.log(myTags.parameters);
+        data = replaceParameters(data, element.parameters), element.content;
+        data = replaceContent(data, element.content);
         html = html.replace(element.tag, data)
       } else {
         console.log('One partial src file does not exist.');
@@ -122,11 +122,11 @@ function getPartialTags(html) {
 function replaceParameters(data, parameters) {
   // console.log(data);
   // console.log(parameters);
-  var starterTags = "{{";
-  var closingTags = "}}";
+  // var starterTags = "{{";
+  // var closingTags = "}}";
   var regexHandlebars = /{{{?[a-z0-9]+.[a-z0-9]*}?}}/g;
   var matches = data.match(regexHandlebars);
-
+  // console.log(parameters);
 
   if (matches != null) {
     matches.forEach(element => {
@@ -140,6 +140,36 @@ function replaceParameters(data, parameters) {
 
     });
   }
+
+  return data;
+}
+
+
+// setup parameters
+function replaceContent(data, content) {
+  // console.log(data);
+  // console.log(parameters);
+  // var starterTags = "{{";
+  // var closingTags = "}}";
+  // var regexHandlebars = /{{{?[content]+}?}}/g;
+  // var matches = data.match(regexHandlebars);
+  // console.log(parameters);
+
+  // if (matches != null) {
+  // matches.forEach(element => {
+  // var palabra = element.replace("{{", "").replace("}}", "").toLowerCase()
+
+  // for (var key of Object.keys(content)) {
+  // if (palabra == key.toLowerCase()) {
+  // if (data != undefined) {
+  data = data.replace(/{{content}}/gi, content)
+  // }
+  // }
+  // }
+
+  // });
+  // }
+
 
 
 
