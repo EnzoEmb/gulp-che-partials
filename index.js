@@ -61,7 +61,7 @@ function replacePartials(file) {
   // get partial content and replacing
   if (myTags.length != 0) {
     myTags.forEach(element => {
-      var src_file = file.base + '/' + element.src
+      var src_file = file.base + '/' + element.parameters.src
       if (fs.existsSync(src_file)) {
         var data = fs.readFileSync(src_file).toString();
         data = replaceParameters(data, element.parameters);
@@ -85,7 +85,7 @@ function getPartialTags(html) {
 
   var partial_regex = "<\s*partial[^>]*>(.*?)<\s*/\s*partial>";
   var partial_regex_self_closing = "<\s*partial[^>]*/>";
-  var src_regex = /src\=([^\s]*)\s?/;
+  // var src_regex = /src\=([^\s]*)\s?\>?/;
   var parameters_regex = /(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|\s*\/?[>"']))+.)["']?/g;
   var tags = [...html.matchAll(partial_regex)];
   var tags_self_closing = [...html.matchAll(partial_regex_self_closing)];
@@ -93,7 +93,7 @@ function getPartialTags(html) {
 
   var myTags = [];
   tags.forEach(function (e) {
-    var src_content = e[0].match(src_regex)[1].replace(/['"]+/g, '');
+    // var src_content = e[0].match(src_regex)[1].replace(/['"]+/g, '');
     var pars = e[0].match(parameters_regex);
 
     // get parameters of the tag
@@ -109,7 +109,7 @@ function getPartialTags(html) {
     myTags.push({
       tag: e[0],
       content: e[1],
-      src: src_content,
+      // src: src_content,
       parameters,
     })
   })
