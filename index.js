@@ -46,6 +46,7 @@ module.exports = function (options) {
 
 /**
  *
+ * 
  * Functions
  */
 
@@ -63,6 +64,8 @@ function replacePartials(file) {
       var src_file = file.base + '/' + element.src
       if (fs.existsSync(src_file)) {
         var data = fs.readFileSync(src_file).toString();
+        data = replaceParameters(data, element.parameters);
+        // console.log(myTags.parameters);
         html = html.replace(element.tag, data)
       } else {
         console.log('One partial src file does not exist.');
@@ -112,6 +115,37 @@ function getPartialTags(html) {
   })
 
   return myTags;
+}
+
+
+// setup parameters
+function replaceParameters(data, parameters) {
+  // console.log(data);
+  // console.log(parameters);
+  var starterTags = "{{";
+  var closingTags = "}}";
+  var regexHandlebars = /{{{?[a-z0-9]+.[a-z0-9]*}?}}/g;
+  var matches = data.match(regexHandlebars);
+
+
+  if (matches != null) {
+    matches.forEach(element => {
+      var palabra = element.replace("{{", "").replace("}}", "").toLowerCase()
+
+      for (var key of Object.keys(parameters)) {
+        if (palabra == key.toLowerCase()) {
+          data = data.replace(element, parameters[key])
+        }
+      }
+
+    });
+  }
+
+
+
+
+
+  return data;
 }
 
 
