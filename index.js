@@ -93,7 +93,6 @@ function getPartialTags(html) {
 
   var myTags = [];
   tags.forEach(function (e) {
-    // var src_content = e[0].match(src_regex)[1].replace(/['"]+/g, '');
     var pars = e[0].match(parameters_regex);
 
     // get parameters of the tag
@@ -109,7 +108,6 @@ function getPartialTags(html) {
     myTags.push({
       tag: e[0],
       content: e[1],
-      // src: src_content,
       parameters,
     })
   })
@@ -120,13 +118,10 @@ function getPartialTags(html) {
 
 // setup parameters
 function replaceParameters(data, parameters) {
-  // console.log(data);
-  // console.log(parameters);
-  // var starterTags = "{{";
-  // var closingTags = "}}";
+  var starterTags = "{{";
+  var closingTags = "}}";
   var regexHandlebars = /{{{?[a-z0-9]+.[a-z0-9]*}?}}/g;
   var matches = data.match(regexHandlebars);
-  // console.log(parameters);
 
   if (matches != null) {
     matches.forEach(element => {
@@ -147,34 +142,7 @@ function replaceParameters(data, parameters) {
 
 // setup parameters
 function replaceContent(data, content) {
-  // console.log(data);
-  // console.log(parameters);
-  // var starterTags = "{{";
-  // var closingTags = "}}";
-  // var regexHandlebars = /{{{?[content]+}?}}/g;
-  // var matches = data.match(regexHandlebars);
-  // console.log(parameters);
-
-  // if (matches != null) {
-  // matches.forEach(element => {
-  // var palabra = element.replace("{{", "").replace("}}", "").toLowerCase()
-
-  // for (var key of Object.keys(content)) {
-  // if (palabra == key.toLowerCase()) {
-  // if (data != undefined) {
   data = data.replace(/{{content}}/gi, content)
-  // }
-  // }
-  // }
-
-  // });
-  // }
-
-
-
-
-
-
   return data;
 }
 
